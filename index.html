@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MemoriaViva AI - Preservando el Legado Familiar con Inteligencia Artificial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Custom styling for smooth premium details and glassmorphism -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .glass {
+            background: rgba(15, 23, 42, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .glow-blue {
+            box-shadow: 0 0 40px -5px rgba(59, 130, 246, 0.25);
+        }
+        .glow-purple {
+            box-shadow: 0 0 40px -5px rgba(168, 85, 247, 0.25);
+        }
+        /* Custom smooth progress animations */
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.05); }
+        }
+        .pulse-layer {
+            animation: pulse-slow 8s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen overflow-x-hidden selection:bg-purple-500/30 selection:text-purple-200">
+
+    <div class="absolute top-0 left-1/4 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-blue-600/10 rounded-full blur-[130px] pointer-events-none -z-10"></div>
+    <div class="absolute top-1/3 right-1/4 w-[500px] sm:w-[700px] h-[500px] sm:h-[700px] bg-purple-600/10 rounded-full blur-[150px] pointer-events-none -z-10"></div>
+    <div class="absolute bottom-10 left-10 w-[300px] h-[300px] bg-pink-600/5 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+
+    <header class="sticky top-0 z-50 glass border-b border-white/5 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo Brand -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="relative w-10 h-10 flex items-center justify-center rounded-xl bg-gradient-to-tr from-blue-600 to-purple-600 shadow-lg shadow-purple-500/20">
+                    <i data-lucide="sparkles" class="w-5 h-5 text-white animate-pulse"></i>
+                    <div class="absolute -inset-0.5 rounded-xl bg-gradient-to-tr from-blue-600 to-purple-600 blur opacity-40 group-hover:opacity-100 transition duration-300 -z-10"></div>
+                </div>
+                <div>
+                    <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
+                        MemoriaViva
+                    </span>
+                    <span class="ml-1 text-xs font-semibold px-1.5 py-0.5 rounded-full bg-purple-500/15 text-purple-300 border border-purple-500/20 uppercase tracking-widest">
+                        AI
+                    </span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation Links -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#como-funciona" class="text-sm text-slate-400 hover:text-white transition-colors">Cómo funciona</a>
+                <a href="#beneficios" class="text-sm text-slate-400 hover:text-white transition-colors">Beneficios</a>
+                <a href="#simulador" class="text-sm text-slate-400 hover:text-white transition-colors flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-blue-500 animate-ping"></span>
+                    Simulador Activo
+                </a>
+                <button onclick="toggleDevHub()" class="text-sm px-3 py-1.5 rounded-lg border bg-white/5 border-white/10 text-slate-300 hover:bg-white/10 transition-all flex items-center gap-2">
+                    <i data-lucide="terminal" class="w-4 h-4 text-purple-400"></i>
+                    Portal Dev
+                </button>
+            </nav>
+
+            <!-- Nav Action Button -->
+            <div class="hidden md:flex items-center space-x-4">
+                <a href="#registro" class="px-5 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 shadow-lg shadow-purple-500/10 hover:shadow-purple-500/25 transform hover:-translate-y-0.5 transition-all duration-200">
+                    Crear Legado Familiar
+                </a>
+            </div>
+
+            <!-- Mobile menu button -->
+            <div class="md:hidden flex items-center gap-4">
+                <button onclick="toggleDevHub()" class="p-2 rounded-lg bg-white/5 text-purple-300 border border-purple-500/20" title="Portal Dev">
+                    <i data-lucide="terminal" class="w-5 h-5"></i>
+                </button>
+                <button onclick="toggleMobileMenu()" class="p-2 rounded-xl bg-white/5 border border-white/10 text-slate-200">
+                    <i id="menu-icon" data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="mobile-menu" class="hidden md:hidden fixed inset-0 z-40 bg-slate-950/95 backdrop-blur-lg pt-24 px-6 flex flex-col space-y-6">
+        <a href="#como-funciona" onclick="toggleMobileMenu()" class="text-lg text-left text-slate-300 border-b border-white/5 pb-2">Cómo funciona</a>
+        <a href="#beneficios" onclick="toggleMobileMenu()" class="text-lg text-left text-slate-300 border-b border-white/5 pb-2">Beneficios</a>
+        <a href="#simulador" onclick="toggleMobileMenu()" class="text-lg text-left text-slate-300 border-b border-white/5 pb-2">Simulador de Avatar</a>
+        <button onclick="toggleDevHub(); toggleMobileMenu();" class="text-lg text-left text-purple-300 border-b border-white/5 pb-2 flex items-center gap-2">
+            <i data-lucide="terminal" class="w-5 h-5"></i>
+            Portal Dev & Guías
+        </button>
+        <a href="#registro" onclick="toggleMobileMenu()" class="w-full py-3.5 text-center rounded-xl font-semibold bg-gradient-to-r from-blue-600 to-purple-600 text-white">Crear Legado Familiar</a>
+    </div>
+
+    <main id="main-content">
+        
+        <!-- ================= HERO SECTION ================= -->
+        <section class="relative pt-12 pb-24 md:pt-20 md:pb-32 px-4 sm:px-6 lg:px-8 overflow-hidden">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+                
+                <!-- Left Column text and emotional slogans -->
+                <div class="lg:col-span-7 flex flex-col space-y-8 text-center lg:text-left">
+                    <div class="inline-flex items-center justify-center lg:justify-start">
+                        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-xs font-semibold text-blue-300 uppercase tracking-wider animate-pulse">
+                            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                            Inteligencia Artificial con Propósito Humano
+                        </span>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                        Hoy un <span class="bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">recuerdo</span>.<br>
+                        Mañana una <span class="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">conversación</span>.
+                    </h1>
+
+                    <p class="text-lg sm:text-xl text-slate-300 font-normal max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Transformamos fotografías, videos antiguos y notas de voz en avatares interactivos hiperrealistas. Permitimos que la voz, la sabiduría y la calidez de tus seres queridos sigan guiando activamente a las futuras generaciones.
+                    </p>
+
+                    <!-- Trust factors metrics block -->
+                    <div class="grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0 pt-4 border-t border-white/5">
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-bold text-white">99.4%</p>
+                            <p class="text-xs sm:text-sm text-slate-400">Fidelidad de Voz</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-bold text-white">Privado</p>
+                            <p class="text-xs sm:text-sm text-slate-400">Búnker Familiar</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl sm:text-3xl font-bold text-white">Eterno</p>
+                            <p class="text-xs sm:text-sm text-slate-400">Legado Activo</p>
+                        </div>
+                    </div>
+
+                    <!-- Call to actions -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#registro" class="w-full sm:w-auto px-8 py-4 rounded-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-xl shadow-purple-500/20 hover:shadow-purple-500/35 transform hover:-translate-y-0.5 transition-all text-center flex items-center justify-center gap-2">
+                            Reserva tu Acceso Prioritario
+                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+                        </a>
+                        <a href="#simulador" class="w-full sm:w-auto px-8 py-4 rounded-xl font-semibold bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 transition-all text-center flex items-center justify-center gap-2">
+                            Probar simulador en vivo
+                        </a>
+                    </div>
+
+                    <p class="text-xs text-slate-500 flex items-center justify-center lg:justify-start gap-2">
+                        <i data-lucide="shield-check" class="text-emerald-400 w-4 h-4"></i>
+                        Privacidad garantizada bajo encriptación familiar soberana. No comercializamos datos.
+                    </p>
+                </div>
+
+                <div class="lg:col-span-5 flex justify-center items-center relative mt-12 lg:mt-0">
+                    <div class="relative w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-gradient-to-tr from-blue-500/20 via-purple-500/10 to-transparent flex items-center justify-center glow-purple">
+                        
+                        <!-- Rotating visual rings representing neural connectivity -->
+                        <div class="absolute inset-0 border border-white/10 rounded-full animate-[spin_20s_linear_infinite]"></div>
+                        <div class="absolute inset-8 border border-dashed border-purple-500/20 rounded-full animate-[spin_12s_linear_infinite]"></div>
+                        <div class="absolute inset-16 border border-blue-500/30 rounded-full animate-[spin_8s_linear_infinite]"></div>
+
+                        <!-- Upward holographic light emission -->
+                        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-48 h-64 bg-gradient-to-t from-blue-500/20 via-purple-500/5 to-transparent blur-xl pointer-events-none"></div>
+
+                        <!-- Active Projection Interface Device -->
+                        <div class="absolute z-10 bottom-4 bg-slate-900 border border-white/10 rounded-2xl p-3 shadow-2xl transform scale-95 hover:scale-100 transition-transform duration-500">
+                            <div class="w-52 h-28 rounded-xl bg-slate-950 overflow-hidden relative border border-white/5 flex flex-col items-center justify-center">
+                                <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:10px_15px]"></div>
+                                <i data-lucide="sparkles" class="w-6 h-6 text-purple-400 animate-bounce mb-2"></i>
+                                <span class="text-[10px] text-slate-400 font-mono tracking-widest uppercase">CONEXIÓN MEMORIA AI</span>
+                            </div>
+                        </div>
+
+                        <!-- Floating Holographic Portrait (Elena) -->
+                        <div class="absolute -top-8 z-20 w-48 h-48 sm:w-56 sm:h-56 rounded-2xl overflow-hidden border border-purple-500/30 shadow-[0_0_30px_rgba(168,85,247,0.25)] bg-slate-900/80 backdrop-blur-sm group hover:border-blue-400/50 transition-all duration-500">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=600" alt="Abuela Elena" class="w-full h-full object-cover filter saturate-75 opacity-90 group-hover:scale-105 transition-transform duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/10 to-transparent h-1/2 w-full animate-[bounce_5s_infinite] pointer-events-none"></div>
+                            
+                            <!-- Green active pulse indicator -->
+                            <div class="absolute top-3 right-3 flex items-center space-x-1 bg-emerald-500/20 border border-emerald-500/30 px-2 py-0.5 rounded-full">
+                                <div class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></div>
+                                <span class="text-[9px] font-bold text-emerald-300">ONLINE</span>
+                            </div>
+
+                            <div class="absolute bottom-0 inset-x-0 bg-slate-950/90 p-2 text-center border-t border-white/5">
+                                <p class="text-xs font-bold text-white">Elena, 84 años</p>
+                                <p class="text-[9px] text-slate-400">Preservada en 2026</p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= CÓMO FUNCIONA ================= -->
+        <section id="como-funciona" class="py-24 bg-slate-950 border-t border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                
+                <div class="text-center max-w-3xl mx-auto mb-20">
+                    <span class="text-xs font-bold uppercase tracking-widest text-purple-400 bg-purple-500/10 px-3 py-1 rounded-full border border-purple-500/20">
+                        Tecnología Humana
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4 tracking-tight">
+                        Cómo construimos el puente del recuerdo
+                    </h2>
+                    <p class="text-lg text-slate-300 mt-4">
+                        Un proceso diseñado con máxima delicadeza y respeto para asegurar que la historia de tu hogar nunca se borre.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Step 1 -->
+                    <div class="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-purple-500/30 transition-all group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-20 h-20 bg-purple-500/5 rounded-bl-full pointer-events-none transition-all group-hover:bg-purple-500/10"></div>
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/15 border border-purple-500/20 text-purple-400 flex items-center justify-center mb-6">
+                            <i data-lucide="upload-cloud" class="w-6 h-6"></i>
+                        </div>
+                        <span class="text-6xl font-extrabold text-white/5 absolute top-4 right-6 group-hover:text-white/10 transition-colors">01</span>
+                        <h3 class="text-xl font-bold text-white mb-3">1. Reúne los recuerdos</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                          Sube desde tu teléfono fotos antiguas, videos del archivo familiar o simples mensajes de voz de WhatsApp de tus padres o abuelos.
+                        </p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-blue-500/30 transition-all group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-20 h-20 bg-blue-500/5 rounded-bl-full pointer-events-none transition-all group-hover:bg-blue-500/10"></div>
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/15 border border-blue-500/20 text-blue-400 flex items-center justify-center mb-6">
+                            <i data-lucide="layers" class="w-6 h-6"></i>
+                        </div>
+                        <span class="text-6xl font-extrabold text-white/5 absolute top-4 right-6 group-hover:text-white/10 transition-colors">02</span>
+                        <h3 class="text-xl font-bold text-white mb-3">2. Modelado de Esencia</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Nuestra IA aprende la cadencia de la voz, los modismos de su región y las anécdotas vividas reales. No inventamos respuestas: respetamos su verdad.
+                        </p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="p-8 rounded-2xl bg-white/5 border border-white/10 hover:border-pink-500/30 transition-all group relative overflow-hidden">
+                        <div class="absolute top-0 right-0 w-20 h-20 bg-pink-500/5 rounded-bl-full pointer-events-none transition-all group-hover:bg-pink-500/10"></div>
+                        <div class="w-12 h-12 rounded-xl bg-pink-500/15 border border-pink-500/20 text-pink-400 flex items-center justify-center mb-6">
+                            <i data-lucide="volume-2" class="w-6 h-6"></i>
+                        </div>
+                        <span class="text-6xl font-extrabold text-white/5 absolute top-4 right-6 group-hover:text-white/10 transition-colors">03</span>
+                        <h3 class="text-xl font-bold text-white mb-3">3. El Abrazo del Tiempo</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Accede a tu bóveda familiar encriptada. Tus hijos y descendientes podrán conversar por chat, llamada de voz o proyección virtual con su ancestro.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= INTERACTIVE SIMULATOR ================= -->
+        <section id="simulador" class="py-24 bg-slate-950 border-t border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-xs font-bold uppercase tracking-widest text-blue-400 bg-blue-500/10 px-3 py-1 rounded-full border border-blue-500/20">
+                        Consola del Legado
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4 tracking-tight">
+                        Conversa con una MemoriaViva
+                    </h2>
+                    <p class="text-slate-300 mt-4">
+                        Prueba el funcionamiento de nuestro sistema interactivo seleccionando uno de nuestros avatares de prueba basados en personas de Latinoamérica.
+                    </p>
+                </div>
+
+                <!-- Simulation interface container -->
+                <div class="bg-slate-900 border border-white/10 rounded-3xl overflow-hidden grid grid-cols-1 lg:grid-cols-12 shadow-2xl glow-purple max-w-5xl mx-auto">
+                    
+                    <!-- Left Console: Avatar Selector -->
+                    <div class="lg:col-span-5 bg-slate-950 p-6 sm:p-8 border-b lg:border-b-0 lg:border-r border-white/10 flex flex-col justify-between">
+                        <div>
+                            <h3 class="text-sm font-bold uppercase tracking-wider text-slate-400 mb-6 flex items-center gap-2">
+                                <i data-lucide="users" class="w-5 h-5 text-purple-400"></i>
+                                Selección de Avatar
+                            </h3>
+
+                            <div class="space-y-4">
+                                <!-- Avatar 1 (Elena) Button -->
+                                <button id="btn-avatar-elena" onclick="switchAvatar('elena')" class="w-full text-left p-4 rounded-xl border transition-all flex items-center gap-4 bg-purple-500/10 border-purple-500/40 text-white">
+                                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=600" alt="Elena" class="w-12 h-12 rounded-xl object-cover border border-white/10">
+                                    <div class="flex-1 min-w-0">
+                                        <p class="font-bold text-sm text-white">Abuela Elena</p>
+                                        <p class="text-xs text-slate-400 truncate">"El corazón de la mesa familiar"</p>
+                                        <span class="text-[9px] text-purple-300 block mt-1">Boyacá, Colombia (84 años)</span>
+                                    </div>
+                                </button>
+
+                                <!-- Avatar 2 (Tomás) Button -->
+                                <button id="btn-avatar-tomas" onclick="switchAvatar('tomas')" class="w-full text-left p-4 rounded-xl border transition-all flex items-center gap-4 bg-white/5 border-white/5 text-slate-400 hover:text-slate-200 hover:bg-white/10">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=600" alt="Tomás" class="w-12 h-12 rounded-xl object-cover border border-white/10">
+                                    <div class="flex-1 min-w-0">
+                                        <p class="font-bold text-sm text-white">Abuelo Tomás</p>
+                                        <p class="text-xs text-slate-400 truncate">"Historias de carpintería y esfuerzo"</p>
+                                        <span class="text-[9px] text-blue-300 block mt-1">Guadalajara, México (79 años)</span>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Warnings on Privacy and ethics -->
+                        <div class="mt-8 pt-6 border-t border-white/5 text-xs text-slate-400 flex items-start gap-2.5">
+                            <i data-lucide="shield-check" class="w-5 h-5 text-emerald-400 shrink-0"></i>
+                            <p class="leading-relaxed">Esta simulación recrea cómo el avatar de un familiar interactúa usando sus respuestas, acentos y tono emocional característicos.</p>
+                        </div>
+                    </div>
+
+                    <!-- Right Console: Chat Feed and Audio Waveforms -->
+                    <div class="lg:col-span-7 flex flex-col justify-between h-[520px] bg-slate-900/40 relative">
+                        
+                        <!-- Chat Feed Header -->
+                        <div class="p-4 border-b border-white/10 bg-slate-950/50 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="relative flex h-3 w-3">
+                                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                                  <span class="relative inline-flex rounded-full h-3 w-3 bg-purple-500"></span>
+                                </span>
+                                <div>
+                                    <span id="chat-title" class="text-xs font-bold text-white uppercase tracking-wider">Abuela Elena</span>
+                                    <span class="text-[10px] block text-slate-400">Canal de Esencia Neural Seguro</span>
+                                </div>
+                            </div>
+
+                            <!-- Animated Audio Waveform -->
+                            <div class="flex items-end space-x-0.5 h-6" id="waveform">
+                                <div class="w-0.5 h-2 bg-slate-700 rounded-full"></div>
+                                <div class="w-0.5 h-3 bg-slate-700 rounded-full"></div>
+                                <div class="w-0.5 h-1.5 bg-slate-700 rounded-full"></div>
+                                <div class="w-0.5 h-4 bg-slate-700 rounded-full"></div>
+                                <div class="w-0.5 h-2.5 bg-slate-700 rounded-full"></div>
+                                <div class="w-0.5 h-5 bg-slate-700 rounded-full"></div>
+                                <div class="w-0.5 h-1 bg-slate-700 rounded-full"></div>
+                            </div>
+                        </div>
+
+                        <!-- Message List Area -->
+                        <div id="chat-messages" class="flex-1 p-6 overflow-y-auto space-y-4 bg-slate-950/20">
+                            <!-- Initial introduction message loaded dynamically -->
+                        </div>
+
+                        <!-- Preset Suggesions -->
+                        <div class="px-6 py-3 bg-slate-950/30 border-t border-white/5">
+                            <p class="text-[9px] font-bold uppercase tracking-wider text-slate-500 mb-2">Preguntas Sugeridas:</p>
+                            <div id="preset-questions-container" class="flex flex-wrap gap-2">
+                                <!-- Suggested questions render here -->
+                            </div>
+                        </div>
+
+                        <!-- User input form -->
+                        <div class="p-4 border-t border-white/10 bg-slate-950/75 flex items-center gap-2">
+                            <input type="text" id="user-input" placeholder="Pregúntame lo que quieras..." class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-400 focus:outline-none focus:border-purple-500 transition-all">
+                            <button onclick="sendCustomMessage()" class="p-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white transition-all shadow-md">
+                                <i data-lucide="send" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= BENEFICIOS EMOCIONALES ================= -->
+        <section id="beneficios" class="py-24 bg-slate-950 border-t border-white/5 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-3xl mx-auto mb-20">
+                    <span class="text-xs font-bold uppercase tracking-widest text-pink-400 bg-pink-500/10 px-3 py-1 rounded-full border border-pink-500/20">
+                        La Trascendencia del Amor
+                    </span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-4 tracking-tight">
+                        Más que tecnología, un puente generacional
+                    </h2>
+                    <p class="text-lg text-slate-300 mt-4">
+                        Preservamos la sabiduría de tus padres y abuelos en un formato dinámico para que tu historia viva por siempre en las mentes de tus descendientes.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Benefit 1 -->
+                    <div class="bg-white/5 border border-white/5 rounded-2xl p-8 hover:border-purple-500/20 transition-all">
+                        <div class="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 flex items-center justify-center mb-6">
+                            <i data-lucide="heart" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Sabiduría Viva Activa</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Tus seres queridos podrán aconsejar, bendecir e inspirar a las nuevas generaciones utilizando sus vivencias reales y su tono de voz característico.
+                        </p>
+                    </div>
+
+                    <!-- Benefit 2 -->
+                    <div class="bg-white/5 border border-white/5 rounded-2xl p-8 hover:border-blue-500/20 transition-all">
+                        <div class="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-400 flex items-center justify-center mb-6">
+                            <i data-lucide="shield-check" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Búnker Soberano Privado</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Tus recuerdos familiares son sagrados. El acceso a cada avatar es estrictamente privado mediante credenciales encriptadas de máxima seguridad.
+                        </p>
+                    </div>
+
+                    <!-- Benefit 3 -->
+                    <div class="bg-white/5 border border-white/5 rounded-2xl p-8 hover:border-pink-500/20 transition-all">
+                        <div class="w-10 h-10 rounded-lg bg-pink-500/10 text-pink-400 flex items-center justify-center mb-6">
+                            <i data-lucide="sparkles" class="w-5 h-5"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Modismos y Jerga Local</h3>
+                        <p class="text-slate-300 text-sm leading-relaxed">
+                            Nuestra IA respeta el acento local de América Latina (el "cantadito" colombiano, el argot mexicano, la calidez rioplatense) para una cercanía real.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= TESTIMONIOS ================= -->
+        <section class="py-24 bg-slate-900/40 border-t border-white/5">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                
+                <div class="text-center max-w-2xl mx-auto mb-16">
+                    <span class="text-xs font-bold uppercase tracking-widest text-purple-400">Familias Unidas</span>
+                    <h2 class="text-3xl font-extrabold text-white mt-4">Historias de Legado Real</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                    
+                    <div class="bg-slate-950 p-8 rounded-2xl border border-white/5 flex flex-col justify-between">
+                        <p class="text-slate-300 italic text-sm leading-relaxed">
+                            "Mis padres están mayores y quería asegurar que mis hijos pequeños crecieran conociendo su sabiduría. Creamos el avatar de mi mamá Elena; el proceso fue tan sencillo como subir notas de voz de WhatsApp. Escuchar a mis hijos reír conversando con su abuela es una bendición invaluable."
+                        </p>
+                        <div class="mt-6 flex items-center gap-4 pt-6 border-t border-white/5">
+                            <div class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center font-bold text-white">C</div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Carlos Martínez</h4>
+                                <p class="text-xs text-slate-500">Padre de Familia y Profesional — 42 años</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-slate-950 p-8 rounded-2xl border border-white/5 flex flex-col justify-between">
+                        <p class="text-slate-300 italic text-sm leading-relaxed">
+                            "Perdí a mi abuelo Tomás el año pasado, pero resguardamos sus sabios consejos y anécdotas en MemoriaViva AI. En momentos difíciles o de incertidumbre, le pregunto al avatar sobre cómo resolver desafíos y su voz de carpintero honesto me guía con la calidez de siempre."
+                        </p>
+                        <div class="mt-6 flex items-center gap-4 pt-6 border-t border-white/5">
+                            <div class="w-10 h-10 rounded-full bg-purple-600 flex items-center justify-center font-bold text-white">M</div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">Mariana Fuentes</h4>
+                                <p class="text-xs text-slate-500">Diseñadora — Guadalajara, México</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= CAPTURE FORM SECTION ================= -->
+        <section id="registro" class="py-24 bg-slate-950 border-t border-white/5 relative">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="bg-gradient-to-br from-slate-900 to-slate-950 border border-white/10 rounded-3xl p-8 sm:p-12 shadow-2xl">
+                    
+                    <div class="text-center max-w-2xl mx-auto mb-10">
+                        <h2 class="text-3xl font-extrabold text-white">Únete a la Lista de Acceso Prioritario</h2>
+                        <p class="text-slate-300 mt-3 text-sm">
+                            Estamos aceptando un número limitado de familias por región para mantener el trato de máxima calidad humana. Asegura el legado de tu hogar hoy.
+                        </p>
+                    </div>
+
+                    <!-- Alert message box (No alerts!) -->
+                    <div id="form-alert" class="hidden mb-6 p-4 rounded-xl text-sm font-semibold"></div>
+
+                    <form id="lead-form" onsubmit="handleFormSubmit(event)" class="space-y-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Nombre Completo *</label>
+                                <input type="text" id="form-name" required placeholder="Ej. Carlos Martínez" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-purple-500 transition-all">
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Correo Electrónico *</label>
+                                <input type="email" id="form-email" required placeholder="ejemplo@correo.com" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-purple-500 transition-all">
+                            </div>
+
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold uppercase tracking-wider text-slate-400 mb-2">Cuéntanos sobre tu historia familiar (Opcional)</label>
+                            <textarea id="form-message" rows="3" placeholder="Ej: Me gustaría resguardar las anécdotas de mi abuelo que fue agricultor..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-purple-500 transition-all"></textarea>
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/5">
+                            <p class="text-xs text-slate-500">
+                                * Tus datos están encriptados y solo se usarán para agendar tu llamada personalizada de legado.
+                            </p>
+                            <button type="submit" id="form-btn" class="w-full sm:w-auto px-8 py-3.5 rounded-xl font-bold text-white bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 transition-all shadow-lg shadow-purple-500/10 hover:shadow-purple-500/25 flex items-center justify-center gap-2">
+                                Reservar mi Cupo
+                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================= INTERACTIVE DEVELOPER HUB (DEVHUB) ================= -->
+    <div id="dev-content" class="hidden py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-white/10 pb-6 mb-8 gap-4">
+            <div>
+                <span class="text-xs font-bold text-purple-400 uppercase tracking-widest">Portal del Desarrollador</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Manual de Despliegue e Integraciones</h2>
+                <p class="text-sm text-slate-400 mt-1">Conecta la Landing directamente con Google Sheets o Make (Integromat) usando webhooks.</p>
+            </div>
+            <button onclick="toggleDevHub()" class="px-4 py-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 text-xs transition-all flex items-center gap-2">
+                <i data-lucide="chevron-left" class="w-4 h-4"></i> Volver a la Landing
+            </button>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            <!-- Left config pane inside developer interface -->
+            <div class="lg:col-span-4 space-y-4">
+                <div class="p-6 rounded-2xl bg-slate-900 border border-white/5 space-y-4">
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-2">
+                        <i data-lucide="settings" class="text-purple-400"></i> Configurar Webhook Activo
+                    </p>
+                    
+                    <div class="space-y-2">
+                        <label class="text-[10px] text-slate-500 block">URL del Webhook de Make o Google Apps Script:</label>
+                        <input type="text" id="dev-webhook-input" value="https://hook.us1.make.com/your-custom-webhook-id" class="w-full bg-slate-950 border border-white/10 rounded-lg px-3 py-2 text-xs text-purple-300 font-mono focus:outline-none focus:border-purple-500">
+                    </div>
+                    
+                    <button onclick="saveDevWebhook()" class="w-full py-2 rounded-xl text-xs font-bold bg-purple-600 hover:bg-purple-500 text-white transition-all">
+                        Actualizar Webhook de Prueba
+                    </button>
+                    <p class="text-[10px] text-slate-500 leading-relaxed">Al ingresar un webhook aquí, el formulario de la landing enviará automáticamente una solicitud HTTP POST con los datos del usuario en formato JSON.</p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-slate-900 border border-white/5">
+                    <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-4">Índice de la Guía</p>
+                    <div class="space-y-2 text-xs">
+                        <a href="#guide-git" class="block p-2 rounded hover:bg-white/5 transition-all text-slate-300 hover:text-white flex items-center gap-2">
+                            <i data-lucide="github" class="w-4 h-4 text-slate-400"></i> 1. Subir a GitHub (Web)
+                        </a>
+                        <a href="#guide-vercel" class="block p-2 rounded hover:bg-white/5 transition-all text-slate-300 hover:text-white flex items-center gap-2">
+                            <i data-lucide="external-link" class="w-4 h-4 text-blue-400"></i> 2. Desplegar en Vercel
+                        </a>
+                        <a href="#guide-sheets" class="block p-2 rounded hover:bg-white/5 transition-all text-slate-300 hover:text-white flex items-center gap-2">
+                            <i data-lucide="database" class="w-4 h-4 text-emerald-400"></i> 3. Conectar Google Sheets
+                        </a>
+                        <a href="#guide-make" class="block p-2 rounded hover:bg-white/5 transition-all text-slate-300 hover:text-white flex items-center gap-2">
+                            <i data-lucide="shuffle" class="w-4 h-4 text-pink-400"></i> 4. Automatizar con Make
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right text content pane with complete README documentation -->
+            <div class="lg:col-span-8 space-y-8">
+                
+                <!-- Git section -->
+                <div id="guide-git" class="p-8 rounded-2xl bg-slate-900 border border-white/5 space-y-4">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i data-lucide="github" class="text-purple-400"></i> 1. Subir tu archivo a GitHub desde el navegador
+                    </h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Este método te permite subir tu página web sin usar la terminal de comandos de tu sistema.
+                    </p>
+                    <ol class="list-decimal list-inside space-y-2 text-sm text-slate-400">
+                        <li>Inicia sesión en tu cuenta en <strong class="text-white">GitHub.com</strong>.</li>
+                        <li>Haz clic en <strong class="text-white">New</strong> (Nuevo) para crear un nuevo repositorio.</li>
+                        <li>Nómbralo <code class="bg-white/10 px-1 rounded text-white">memoriaviva-ai</code> y déjalo como <strong>Público</strong>. No inicialices ningún archivo.</li>
+                        <li>En la pantalla que aparece, haz clic en el enlace que dice <strong class="text-purple-400">create a new file</strong> (crear un nuevo archivo).</li>
+                        <li>Escribe exactamente <code class="bg-white/10 px-1 rounded text-white">index.html</code> en el nombre del archivo.</li>
+                        <li>Copia el código de esta página e insértalo en el editor.</li>
+                        <li>Haz clic en <strong class="text-white">Commit changes...</strong> abajo en el botón verde y confírmalo para publicar.</li>
+                    </ol>
+                </div>
+
+                <!-- Vercel section -->
+                <div id="guide-vercel" class="p-8 rounded-2xl bg-slate-900 border border-white/5 space-y-4">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i data-lucide="external-link" class="text-blue-400"></i> 2. Despliegue instantáneo en Vercel
+                    </h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Vercel tomará automáticamente el archivo <code class="bg-white/10 px-1 rounded text-white">index.html</code> de tu GitHub y lo publicará con un link público seguro (HTTPS).
+                    </p>
+                    <ol class="list-decimal list-inside space-y-2 text-sm text-slate-400">
+                        <li>Entra a <strong class="text-white">Vercel.com</strong> e inicia sesión usando tu cuenta de GitHub.</li>
+                        <li>Haz clic en <strong class="text-white">Add New... > Project</strong> en tu panel de control de Vercel.</li>
+                        <li>Importa el repositorio de GitHub llamado <strong class="text-white">memoriaviva-ai</strong> que acabas de crear.</li>
+                        <li>Deja todas las opciones por defecto y haz clic en el botón <strong class="text-blue-400 font-bold">Deploy</strong>.</li>
+                        <li>¡Y listo! Vercel te entregará una dirección web en vivo para compartir con tus usuarios.</li>
+                    </ol>
+                </div>
+
+                <!-- Sheets section -->
+                <div id="guide-sheets" class="p-8 rounded-2xl bg-slate-900 border border-white/5 space-y-4">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i data-lucide="database" class="text-emerald-400"></i> 3. Guardar datos en Google Sheets (Sin servidor)
+                    </h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Puedes almacenar la información del formulario directamente en una hoja de Google Drive gratis:
+                    </p>
+                    <ol class="list-decimal list-inside space-y-2 text-sm text-slate-400">
+                        <li>Crea una hoja en Google Drive llamada <strong class="text-white">Leads MemoriaViva</strong>.</li>
+                        <li>Agrega cuatro columnas en la primera fila: <strong>A1: Fecha</strong>, <strong>B1: Nombre</strong>, <strong>C1: Correo</strong>, <strong>D1: Mensaje</strong>.</li>
+                        <li>En el menú superior, ve a <strong class="text-white">Extensiones > Apps Script</strong>.</li>
+                        <li>Pega el código de abajo en el editor y haz clic en Guardar (ícono de disquete):</li>
+                    </ol>
+
+                    <pre class="bg-slate-950 p-4 rounded-xl text-xs text-blue-400 overflow-x-auto font-mono border border-white/5">
+function doPost(e) {
+  try {
+    var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+    var data = JSON.parse(e.postData.contents);
+    
+    // Inserta nueva fila con fecha actual, nombre, correo y mensaje del formulario
+    sheet.appendRow([new Date(), data.name, data.email, data.message]);
+    
+    return ContentService.createTextOutput(JSON.stringify({"result":"success"}))
+      .setMimeType(ContentService.MimeType.JSON);
+  } catch(error) {
+    return ContentService.createTextOutput(JSON.stringify({"result":"error", "error": error.toString()}))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}</pre>
+                    <ol start="5" class="list-decimal list-inside space-y-2 text-sm text-slate-400">
+                        <li>Haz clic arriba en el botón azul <strong class="text-white">Implementar > Nueva implementación</strong>.</li>
+                        <li>Selecciona Tipo como <strong>Aplicación web</strong>. Configura "Quién tiene acceso" a <strong>Cualquier persona</strong>. Haz clic en Implementar.</li>
+                        <li>Copia la URL provista por Google. Esa es la URL que debes ingresar en tu webhook de la landing page.</li>
+                    </ol>
+                </div>
+
+                <!-- Make Section -->
+                <div id="guide-make" class="p-8 rounded-2xl bg-slate-900 border border-white/5 space-y-4">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                        <i data-lucide="shuffle" class="text-pink-400"></i> 4. Automatización de correos de bienvenida con Make
+                    </h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">
+                        Si quieres automatizar tus correos electrónicos o enviar notificaciones instantáneas a tu equipo:
+                    </p>
+                    <ol class="list-decimal list-inside space-y-2 text-sm text-slate-400">
+                        <li>Ingresa a <strong class="text-white">Make.com</strong> y crea un nuevo escenario.</li>
+                        <li>Agrega el disparador principal buscando <strong class="text-pink-400 font-bold">Webhooks > Custom Webhook</strong>.</li>
+                        <li>Crea un webhook, dale un nombre y copia la URL entregada (Ej. <code class="bg-white/10 px-1 rounded text-white">https://hook.us1.make.com/...</code>).</li>
+                        <li>Pega esa URL en la configuración de la landing page o en la constante del archivo.</li>
+                        <li>En Make, presiona el botón <strong class="text-white">Redetect</strong> y envía el formulario de prueba desde la landing page para vincular los datos.</li>
+                        <li>Agrega el siguiente módulo en Make (ej. Gmail, Mailchimp o Google Sheets) para realizar la acción automatizada deseada. ¡Listo!</li>
+                    </ol>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="bg-slate-950 border-t border-white/5 py-12 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
+            
+            <div class="md:col-span-2 space-y-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 flex items-center justify-center rounded-lg bg-gradient-to-tr from-blue-600 to-purple-600">
+                        <i data-lucide="sparkles" class="w-4 h-4 text-white"></i>
+                    </div>
+                    <span class="text-lg font-bold text-white">MemoriaViva AI</span>
+                </div>
+                <p class="text-xs text-slate-400 max-w-sm leading-relaxed">
+                    Preservamos las historias de vida de las familias latinoamericanas para asegurar que el legado, los valores y las bendiciones vivan eternamente en la era digital.
+                </p>
+                <p class="text-[10px] text-slate-500">
+                    © 2026 MemoriaViva AI Inc. Todos los derechos reservados.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">La Empresa</h4>
+                <ul class="space-y-2 text-xs text-slate-400">
+                    <li><a href="#como-funciona" class="hover:text-white transition-colors">Cómo funciona</a></li>
+                    <li><a href="#beneficios" class="hover:text-white transition-colors">Beneficios Emocionales</a></li>
+                    <li><a href="#simulador" class="hover:text-white transition-colors">Demo Interactiva</a></li>
+                    <li><button onclick="toggleDevHub()" class="hover:text-white text-left transition-colors">Integración Técnica</button></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-widest text-slate-400 mb-4">Ética de Legado</h4>
+                <ul class="space-y-2 text-xs text-slate-400">
+                    <li class="flex items-center gap-1"><i data-lucide="shield-check" class="w-3.5 h-3.5 text-emerald-400"></i> Búnker de Privacidad</li>
+                    <li>Código Ético Generativo</li>
+                    <li>Consentimiento Soberano</li>
+                    <li>Términos del Servicio</li>
+                </ul>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- ================= JAVASCRIPT LOGIC ================= -->
+    <script>
+        // Integration webhook URL (Default placeholder)
+        let ACTIVE_WEBHOOK_URL = "https://hook.us1.make.com/your-custom-webhook-id";
+
+        // Preloaded Simulator Avatars Data
+        const AVATARS = {
+            elena: {
+                name: "Abuela Elena",
+                origin: "Boyacá, Colombia",
+                intro: "Hola mi vida, qué alegría que entres a conversar conmigo. Aquí estoy siempre para cuando quieras que preparemos un dulce o me pidas un consejo. Cuéntame, ¿cómo va tu día hoy?",
+                questions: [
+                    { q: "¿Cuál es tu mejor recuerdo del campo?", a: "Ay mi amor, cuando corríamos descalzos por las colinas verdes de Boyacá... No teníamos luz eléctrica, pero las estrellas iluminaban más que nada. Mi mamá cantaba mientras hacía el pan en horno de leña, ese olor es algo que nunca se me borrará del alma." },
+                    { q: "¿Qué consejo le darías a tus nietos?", a: "Que no corran tanto en la vida. La gente hoy vive de prisa pegada a esos aparatos y se les olvida mirarse a los ojos y dar las gracias. Compartan en la mesa, escuchen a sus viejos y sobre todo, nunca pierdan la alegría." },
+                    { q: "¿Cómo conociste al abuelo Tomás?", a: "¡Ese moreno travieso! Nos vimos en la plaza del pueblo en una fiesta. Él me sacó a bailar un pasillo y de los nervios me pisó el vestido. Pidió perdón con tanta gracia y sonrisa bonita que supe que caminaríamos juntos toda la vida." }
+                ]
+            },
+            tomas: {
+                name: "Abuelo Tomás",
+                origin: "Guadalajara, México",
+                intro: "¡Qué onda, muchacho! Pásale, toma asiento aquí en el taller. Estaba justamente recordando mis años mozos trabajando la madera de pino. ¿Qué traes en mente hoy? Pregúntame lo que gustes.",
+                questions: [
+                    { q: "¿Cómo superaste los tiempos más duros?", a: "Trabajando duro, mijo, no hay de otra. Cuando se nos quemó el primer taller de madera, sentí que el mundo se acababa. Pero miré a tu abuela, miré a mis hijos y me dije: 'La madera se quema, pero el oficio y las ganas se quedan conmigo'. Nos levantamos más fuertes." },
+                    { q: "¿Cuál era tu pasión en el taller?", a: "Darle forma a las cosas con mis propias manos. El olor a pino recién cortado... Para mí, cada mueble no era solo madera ensamblada; era un hogar donde una familia se iba a sentar a compartir su vida." },
+                    { q: "¿Qué opinas de estar en esta IA?", a: "¡Vaya milagro moderno! Al principio me sonaba a ciencia ficción de esa de las películas. Pero saber que mis nietos y los hijos de mis nietos van a poder platicar conmigo y sentirme cerca... caray, me hace sentir que de verdad soy eterno." }
+                ]
+            }
+        };
+
+        let currentAvatarId = 'elena';
+        let dialogueHistory = [];
+        let isTyping = false;
+
+        // Initialize Lucide icons on window load
+        window.onload = function() {
+            lucide.createIcons();
+            switchAvatar('elena');
+        };
+
+        // Mobile drawer toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('hidden');
+            const isHidden = menu.classList.contains('hidden');
+            icon.setAttribute('data-lucide', isHidden ? 'menu' : 'x');
+            lucide.createIcons();
+        }
+
+        // Handle tabs switching between developer portal and landing view
+        function toggleDevHub() {
+            const main = document.getElementById('main-content');
+            const dev = document.getElementById('dev-content');
+            if (dev.classList.contains('hidden')) {
+                dev.classList.remove('hidden');
+                main.classList.add('hidden');
+                window.scrollTo(0, 0);
+            } else {
+                dev.classList.add('hidden');
+                main.classList.remove('hidden');
+            }
+        }
+
+        // Save Webhook from developer portal inputs
+        function saveDevWebhook() {
+            const val = document.getElementById('dev-webhook-input').value;
+            ACTIVE_WEBHOOK_URL = val;
+            
+            // Success indicator inside UI without alert
+            const btn = document.querySelector('[onclick="saveDevWebhook()"]');
+            const original = btn.innerText;
+            btn.innerText = "✓ Webhook Actualizado Correctamente";
+            btn.classList.remove('bg-purple-600');
+            btn.classList.add('bg-emerald-600');
+            setTimeout(() => {
+                btn.innerText = original;
+                btn.classList.remove('bg-emerald-600');
+                btn.classList.add('bg-purple-600');
+            }, 2000);
+        }
+
+        // Change simulated hologram avatar inside console
+        function switchAvatar(id) {
+            currentAvatarId = id;
+            const avatar = AVATARS[id];
+            
+            // Update button styles
+            const btnElena = document.getElementById('btn-avatar-elena');
+            const btnTomas = document.getElementById('btn-avatar-tomas');
+            
+            if (id === 'elena') {
+                btnElena.className = "w-full text-left p-4 rounded-xl border transition-all flex items-center gap-4 bg-purple-500/10 border-purple-500/40 text-white";
+                btnTomas.className = "w-full text-left p-4 rounded-xl border transition-all flex items-center gap-4 bg-white/5 border-white/5 text-slate-400 hover:text-slate-200 hover:bg-white/10";
+            } else {
+                btnTomas.className = "w-full text-left p-4 rounded-xl border transition-all flex items-center gap-4 bg-purple-500/10 border-purple-500/40 text-white";
+                btnElena.className = "w-full text-left p-4 rounded-xl border transition-all flex items-center gap-4 bg-white/5 border-white/5 text-slate-400 hover:text-slate-200 hover:bg-white/10";
+            }
+
+            // Update Header and variables
+            document.getElementById('chat-title').innerText = avatar.name;
+            dialogueHistory = [{ sender: 'avatar', text: avatar.intro, time: 'Ahora' }];
+            isTyping = false;
+            
+            renderDialogue();
+            renderPresets();
+            stopWaveform();
+        }
+
+        // Render dialogue bubbles to container
+        function renderDialogue() {
+            const container = document.getElementById('chat-messages');
+            container.innerHTML = '';
+            
+            dialogueHistory.forEach(msg => {
+                const bubbleWrapper = document.createElement('div');
+                bubbleWrapper.className = `flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`;
+                
+                const isUser = msg.sender === 'user';
+                bubbleWrapper.innerHTML = `
+                    <div class="max-w-[85%] rounded-2xl p-4 text-sm leading-relaxed ${isUser ? 'bg-blue-600 text-white rounded-br-none' : 'bg-white/5 border border-white/10 text-slate-100 rounded-bl-none'}">
+                        <p>${msg.text}</p>
+                        <span class="text-[9px] text-slate-400 block mt-2 text-right">${msg.time}</span>
+                    </div>
+                `;
+                container.appendChild(bubbleWrapper);
+            });
+            
+            // Scroll to end of chat area
+            container.scrollTop = container.scrollHeight;
+        }
+
+        // Render suggested preset buttons based on active avatar
+        function renderPresets() {
+            const container = document.getElementById('preset-questions-container');
+            container.innerHTML = '';
+            const avatar = AVATARS[currentAvatarId];
+            
+            avatar.questions.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = "text-xs px-3 py-1.5 rounded-lg bg-white/5 hover:bg-purple-500/10 border border-white/5 hover:border-purple-500/30 text-slate-300 transition-all text-left";
+                btn.innerText = item.q;
+                btn.onclick = () => askQuestion(item.q);
+                container.appendChild(btn);
+            });
+        }
+
+        // Handle simulation question asking
+        function askQuestion(qText) {
+            if (!qText.trim() || isTyping) return;
+
+            // Push User input
+            dialogueHistory.push({ sender: 'user', text: qText, time: 'Hace un momento' });
+            renderDialogue();
+            isTyping = true;
+            startWaveform();
+
+            // Create placeholder loading bubble
+            const container = document.getElementById('chat-messages');
+            const typingIndicator = document.createElement('div');
+            typingIndicator.id = "typing-bubble";
+            typingIndicator.className = "flex justify-start";
+            typingIndicator.innerHTML = `
+                <div class="bg-white/5 border border-white/10 rounded-2xl rounded-bl-none p-4 flex items-center space-x-2">
+                    <span class="text-xs text-slate-400">Modelando recuerdos de la memoria...</span>
+                    <span class="flex space-x-1">
+                        <span class="w-1.5 h-1.5 bg-blue-400 rounded-full animate-bounce"></span>
+                        <span class="w-1.5 h-1.5 bg-purple-400 rounded-full animate-bounce" style="animation-delay: 150ms"></span>
+                        <span class="w-1.5 h-1.5 bg-pink-400 rounded-full animate-bounce" style="animation-delay: 300ms"></span>
+                    </span>
+                </div>
+            `;
+            container.appendChild(typingIndicator);
+            container.scrollTop = container.scrollHeight;
+
+            // Search predefined response matching input or generate fallback emotional sentence
+            const avatar = AVATARS[currentAvatarId];
+            const answerMatch = avatar.questions.find(item => item.q === qText);
+            const rawResponse = answerMatch ? answerMatch.a : `Qué hermosa pregunta, mi cielo. Esas historias de la vida me recuerdan a las tardes lluviosas en que nos reuníamos a conversar en la cocina. El amor, la honestidad y las bendiciones que les heredamos siempre permanecen en sus corazones. Sigue adelante con fuerza, hijo.`;
+
+            // Delayed response mimicking streaming text
+            setTimeout(() => {
+                const indicator = document.getElementById('typing-bubble');
+                if (indicator) indicator.remove();
+
+                dialogueHistory.push({ sender: 'avatar', text: rawResponse, time: 'Ahora' });
+                isTyping = false;
+                renderDialogue();
+                
+                // Stop waveform simulation after answering
+                setTimeout(stopWaveform, 4000);
+            }, 1500);
+        }
+
+        function sendCustomMessage() {
+            const input = document.getElementById('user-input');
+            const text = input.value;
+            if (text.trim()) {
+                askQuestion(text);
+                input.value = '';
+            }
+        }
+
+        // Enable user input keyboard key listener
+        document.getElementById('user-input').addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                sendCustomMessage();
+            }
+        });
+
+        // Interactive Audio Waves simulation
+        let waveformInterval;
+        function startWaveform() {
+            clearInterval(waveformInterval);
+            const bars = document.querySelectorAll('#waveform div');
+            waveformInterval = setInterval(() => {
+                bars.forEach(bar => {
+                    const randomHeight = Math.floor(Math.random() * 20) + 4;
+                    bar.style.height = randomHeight + 'px';
+                    bar.classList.remove('bg-slate-700');
+                    bar.classList.add('bg-purple-400');
+                });
+            }, 100);
+        }
+
+        function stopWaveform() {
+            clearInterval(waveformInterval);
+            const bars = document.querySelectorAll('#waveform div');
+            bars.forEach(bar => {
+                bar.style.height = '8px';
+                bar.classList.remove('bg-purple-400');
+                bar.classList.add('bg-slate-700');
+            });
+        }
+
+        // Handle Lead Capture Form Submit
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('form-name').value;
+            const email = document.getElementById('form-email').value;
+            const message = document.getElementById('form-message').value;
+            const btn = document.getElementById('form-btn');
+            const alertBox = document.getElementById('form-alert');
+
+            // Form validation
+            if (!name || !email) {
+                alertBox.className = "block mb-6 p-4 rounded-xl text-sm font-semibold bg-red-500/10 border border-red-500/30 text-red-400";
+                alertBox.innerText = "Por favor, completa los campos obligatorios.";
+                return;
+            }
+
+            // Visual Processing Feedback
+            const originalBtnText = btn.innerHTML;
+            btn.innerHTML = `<span class="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span> Enviando...`;
+            btn.disabled = true;
+
+            const payload = {
+                name: name,
+                email: email,
+                message: message,
+                submittedAt: new Date().toISOString(),
+                source: "Landing Page MemoriaViva AI (HTML Directo)"
+            };
+
+            // Post action to currently configured webhook
+            fetch(ACTIVE_WEBHOOK_URL, {
+                method: "POST",
+                mode: "no-cors", // Standard mode bypasses CORS issues directly to Make or AppScript
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(() => {
+                // Return success state UI
+                alertBox.className = "block mb-6 p-6 rounded-2xl text-center bg-emerald-500/10 border border-emerald-500/30 text-emerald-300";
+                alertBox.innerHTML = `
+                    <h4 class="text-base font-bold text-white mb-2">¡Cupo Reservado Exitosamente!</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">Nos pondremos en contacto contigo para agendar la llamada. Si integraste tu Apps Script o webhook de Make, tus datos acaban de guardarse en vivo.</p>
+                `;
+                document.getElementById('lead-form').reset();
+            })
+            .catch(error => {
+                console.error("Error enviando lead:", error);
+                // Graceful fallback for demo purposes showing virtual success
+                alertBox.className = "block mb-6 p-6 rounded-2xl text-center bg-emerald-500/10 border border-emerald-500/30 text-emerald-300";
+                alertBox.innerHTML = `
+                    <h4 class="text-base font-bold text-white mb-2">¡Cupo Reservado (Modo Demo)!</h4>
+                    <p class="text-xs text-slate-300 leading-relaxed">Los datos se han registrado de forma virtual. Configura un webhook de producción real en el Portal de Desarrolladores para almacenarlos permanentemente.</p>
+                `;
+            })
+            .finally(() => {
+                btn.innerHTML = originalBtnText;
+                btn.disabled = false;
+            });
+        }
+    </script>
+</body>
+</html>
