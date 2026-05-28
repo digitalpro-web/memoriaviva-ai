@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
-<head> 
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MemoriaViva AI - Preservando el Legado Familiar con Inteligencia Artificial</title>
@@ -994,7 +994,6 @@ function doPost(e) {
             // Post action to currently configured webhook
             fetch(ACTIVE_WEBHOOK_URL, {
                 method: "POST",
-                mode: "no-cors", // Standard mode bypasses CORS issues directly to Make or AppScript
                 headers: {
                     "Content-Type": "application/json"
                 },
